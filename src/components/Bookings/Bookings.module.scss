@@ -1,0 +1,43 @@
+.booking__container {
+  max-height: 500px;
+  height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  .booking {
+    display: flex;
+    padding: 12px 22px;
+    align-items: center;
+    border-radius: 12px;
+    transition: 100ms;
+    border-bottom: 1px solid rgb(209, 200, 197);
+    &:hover {
+      background-color: rgb(245, 239, 237);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    }
+
+    .first__name, .last__name{
+      text-transform: capitalize;
+    }
+    div {
+      max-width: 105px;
+      width: 100%;
+    }
+
+    span {
+      margin-left: 8px;
+    }
+    .delete {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      border-radius: 22px;
+      width: 14px;
+      height: 13px;
+      &:hover {
+        background-color: rgb(230, 165, 165);
+        color: red;
+        cursor: pointer;
+      }
+    }
+  }
+}

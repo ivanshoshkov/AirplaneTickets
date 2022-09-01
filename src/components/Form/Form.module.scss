@@ -1,0 +1,32 @@
+.form {
+  .form__row {
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+    input,
+    select {
+      margin-right: 6px;
+      max-width: 160px;
+      background-color: white;
+    }
+  }
+  .notification {
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: center;
+  }
+  .loading {
+    background-color: rgb(19, 65, 165);
+    color: white;
+  }
+  .success {
+    background-color: rgb(24, 165, 19);
+    color: white;
+  }
+  .error {
+    background-color: rgb(255, 66, 66);
+    color: white;
+  }
+}
