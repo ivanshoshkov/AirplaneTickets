@@ -14,10 +14,16 @@ const initialState: State = {
   totalCount: null,
 };
 
+const tokenP = {
+  authToken: TOKEN,
+};
+
+const tokenParams = new URLSearchParams(tokenP);
+
 export const submitBooking = createAsyncThunk(
   "booking/submitBooking",
   async (data: Booking) => {
-    return fetch(`${BASE_URI}bookings/create?authToken=${TOKEN}`, {
+    return fetch(`${BASE_URI}bookings/create?` + tokenParams, {
       method: "POST",
       headers,
       body: JSON.stringify(data),
@@ -31,13 +37,17 @@ export const submitBooking = createAsyncThunk(
 export const getAllBookings = createAsyncThunk(
   "booking/getAllBookings",
   async (pageNumber: number) => {
-    return fetch(
-      `${BASE_URI}bookings?authToken=${TOKEN}&pageIndex=${pageNumber}&pageSize=${PAGE_SIZE}`,
-      {
-        method: "GET",
-        headers,
-      }
-    )
+    const getBookingsP = {
+      authToken: TOKEN,
+      pageIndex: pageNumber.toString(),
+      pageSize: PAGE_SIZE.toString(),
+    };
+
+    const bookingsParams = new URLSearchParams(getBookingsP);
+    return fetch(`${BASE_URI}bookings?` + bookingsParams, {
+      method: "GET",
+      headers,
+    })
       .then((res) => res.json())
       .catch((e) => console.log(e));
   }
@@ -47,7 +57,7 @@ export const deleteBooking = createAsyncThunk(
   "booking/deleteBooking",
   async (BOOKING_NUMBER: number) => {
     return fetch(
-      `${BASE_URI}bookings/delete/${BOOKING_NUMBER}?authToken=${TOKEN}`,
+      `${BASE_URI}bookings/delete/${BOOKING_NUMBER}?` + tokenParams,
       {
         method: "DELETE",
         headers,
@@ -92,4 +102,4 @@ export const bookingSlice = createSlice({
   },
 });
 export const bookingReducer = bookingSlice.reducer;
-export const { setPage,resetPage } = bookingSlice.actions;
+export const { setPage, resetPage } = bookingSlice.actions;
